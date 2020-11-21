@@ -1,0 +1,63 @@
+body {
+    background-color: rgb(240, 240, 240);
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before{
+    background-color: #38ac38;
+    border-color: black;
+}
+
+.btn{
+    font-size: 1.25rem;
+}
+
+/*Display countries as boxes*/
+.country{
+    border-radius: 0.5rem; 
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    width: 300px;
+    margin: 1.5rem;
+}
+
+.country-body{
+    margin-left: 2rem;
+    margin-top: 1rem;
+    color:black;
+    text-align: left;
+    font-size: medium;
+}
+#img-box{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    
+    /* height: 150px; */
+}
+
+/*Display contries as list*/
+.list-group-item{
+    border-radius: 0.5rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: white;
+    overflow: hidden;
+}
+
+#img-list{
+    width: 100px;
+    height: 60px;
+    border: thick;
+    border-radius: 0.25rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+/*Display country*/
+#img-country{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+#box-country .row{
+    margin-block: 1.5rem;
+}

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Api Homework</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet"> 
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="styles/style.css">
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light bg-light justify-content-md-between justify-content-center pt-1 pb-1" style="padding-right: 400px;padding-left: 400px;">
+      <a class="navbar-brand" style="font-size: 2.25rem; color: rgb(28, 112, 28);">Welcome to my homework</a>
+      <form class="form-inline d-md-flex d-block">
+        <button class="btn btn-danger mr-sm-2" type="button" id="reset"><i class="fas fa-toilet-paper"></i> Reset</button>
+        <input class="my-2 my-sm-0" type="checkbox" checked data-toggle="toggle" 
+          data-on="<i class='fas fa-sync-alt mr-1'></i> Switch" 
+          data-off="<i class='fas fa-sync-alt mr-1'></i> Switch" data-onstyle="success" data-offstyle="warning" id="switch">
+      </form>
+    </nav>
+    <div class="container text-info">
+      <div class="row d-flex align-item-center">
+        <!-- Search one specified country from a list -->
+        <div class="col-sm-4 text-center mt-3 d-flex flex-column">
+            <label for="choose-country"><h3>Search country</h3></label>
+            <select id="choose-country" class="form-control" style="cursor: pointer;">   
+              <option selected disabled>List of countries</option>
+              
+            </select>
+        </div>
+        <!-- Filter countries by region -->
+        <div class="col-sm-4 text-center mt-3">
+          <label for="select-region"><h3>Search by region</h3></label>
+          <select id="select-region" class="form-control mb-3" style="cursor: pointer;">
+            <option value="all">All regions</option>
+            <option value="asia">Asia</option>
+            <option value="americas">Americas</option>
+            <option value="africa">Africa</option>
+            <option value="europe">Europe</option>
+            <option value="oceania">Oceania</option>
+            <option value="Polar">Polar</option>
+          </select>
+          <button type="button" class="btn btn-secondary btn-block publish" id="search-countries"><i class="fas fa-search"></i> Search</button>
+        </div>
+        <!-- Filter countries by population. Radio buttons for choosing differnt categories-->
+        <div class="col-sm-4 mt-3">
+          <div class="panel panel-default text-center">
+            <div class="panel-heading">
+              <h3 class="panel-title">Sort by population</h3>
+            </div>
+              <div class="panel-body bg-white border rounded mt-3">
+                <div class="form-group d-flex align-items-start flex-column ml-2 text-dark">
+                  <div class="custom-control custom-checkbox mt-3">
+                    <input type="checkbox" class="custom-control-input" name="population" id="under-hundred-thousend" value="100000">
+                    <label class="custom-control-label" for="under-hundred-thousend" style="cursor: pointer;">Population under 100 000</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="population" id="between-hundred-million" value="1000000">
+                    <label class="custom-control-label" for="between-hundred-million" style="cursor: pointer;">Population between 100 000 and 1 000 000</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="population" id="between-million-tenmillion" value="10000000">
+                    <label class="custom-control-label" for="between-million-tenmillion" style="cursor: pointer;">Population between 1 000 000 and 10 000 000</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="population" id="between-tenmillion-fiftymillion" value="50000000">
+                    <label class="custom-control-label" for="between-tenmillion-fiftymillion" style="cursor: pointer;">Population between 10 000 000 and 50 000 000</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="population" id="between-fiftymillion-hundredmillion" value="99999999">
+                    <label class="custom-control-label" for="between-fiftymillion-hundredmillion" style="cursor: pointer;">Population between 50 000 000 and 100 000 000</label>
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="population" id="over-hundred-million" value="100000000">
+                    <label class="custom-control-label" for="over-hundred-million" style="cursor: pointer;">Population over 100 000 000</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container bg-light border rounded mt-3 max-width:1000;" style="display: none;" id="box">
+        <div class="container d-flex flex-wrap" id="countries">
+                   
+        </div>
+        <ul class="list-group" id="countries-list"> 
+
+        </ul>
+      </div>
+      <div class="modal fade" id="countryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <option value="" id="option-clone" class="font-weight-bold"></option>
+
+    <div class="country" style="display: none; cursor: pointer;" id="clone-box">
+      <button class="btn btn-block p-0" style="height: 100%;" type="button" id="">
+        <div>
+          <img class="img-fluid" src="" id="img-box">
+        </div>
+        <div class="country-body">
+          <h3>name</h3>
+          <p>Capital: <span id="capital">name</span></p>
+          <p>Region: <span id="region">name</span></p>  
+          <p>Population: <span id="population">number</span></p>
+          <p>Area: <span id="area">number</span><span> km&#178;</span></p>
+          <p>Currency: <span id="currency">currency</span></p>
+        </div>
+      </button>
+    </div>
+
+    <li class="list-group-item" style="display: none; cursor: pointer;" id="cloneListItem">
+      <div class="row d-flex align-items-center justify-content-between mx-md-2 mt-md-2 ml-sd-0 btn" type="button" id="">
+        <img class="img-fluid" src="" id="img-list">
+        <h4>name</h4>
+        <p>Capital: <span id="capital">name</span></p>
+        <p>Population: <span id="population">number</span></p>
+        <p>Area: <span id="area">number</span><span> km&#178;</span></p>
+      </div>
+    </li>
+
+    <div class="container" style="display: none;" id="box-country">
+      <div class="row d-flex align-items-stretch">
+        <div class="col-md-4">
+          <img class="img-fluid" src="" id="img-country">
+        </div>
+        <div class="col-md-8">
+          <div class="row mt-0 ml-0">
+            <h3>name</h3>
+          </div>
+          <div class="row mt-1">
+            <div class="col-md-6">
+              <p>Capital: <span id="capital">name</span></p>
+              <p>Calling code: <span id="callingCodes">name</span></p>
+              <p>Region: <span id="region">name</span></p>  
+              <p>Sub region: <span id="subregion">name</span></p>
+              <p>Regional blocs: <span id="regionalBlocs">name</span></p>
+              <p>Population: <span id="population">number</span></p>  
+            </div>
+            <div class="col-md-6">
+              <p>Area: <span id="area">number</span><span> km&#178;</span></p>
+              <p>Currency: <span id="currency">currency</span></p>
+              <p>Language: <span id="language">language</span></p>
+              <p>Internet domain: <span id="topLevelDomain">language</span></p>
+              <p>Time zone: <span id="timeZone">timezone</span></p>
+              <p>Borders: <span id="borders">borders</span></p>  
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
